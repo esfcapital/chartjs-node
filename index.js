@@ -4,6 +4,7 @@ const jsdom = BbPromise.promisifyAll(require('jsdom'));
 const fs = BbPromise.promisifyAll(require('fs'));
 const streamBuffers = require('stream-buffers');
 const EventEmitter  = require('events');
+const { createCanvas, Canvas } = require('canvas');
 jsdom.defaultDocumentFeatures = {
     FetchExternalResources: ['script'],
     ProcessExternalResources: true
@@ -58,7 +59,7 @@ class ChartjsNode extends EventEmitter {
 
                 window.devicePixelRatio = this._devicePixelRatio;
                 this._window = window;
-                const canvas = require('canvas');
+                const canvas = createCanvas();
                 const canvasMethods = ['HTMLCanvasElement'];
 
                 // adding window properties to global (only properties that are not already defined).
